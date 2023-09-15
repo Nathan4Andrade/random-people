@@ -6,11 +6,12 @@ async function getPeople(id: number) {
     `SELECT * FROM people WHERE "id" = $1;`,
     [id]
   );
-  return people.rows;
+  return people;
 }
 
 async function getQuantity() {
-  return db.query(`SELECT COUNT(*) FROM "people"`);
+  const quantity = await db.query(`SELECT COUNT(*) FROM "people";`);
+  return quantity.rows[0].count;
 }
 
 export const peopleRepository = { getPeople, getQuantity };

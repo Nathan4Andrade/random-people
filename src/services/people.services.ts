@@ -5,7 +5,7 @@ async function getPeople(): Promise<People> {
   const max = Number(await peopleRepository.getQuantity());
   const randomId = getRandom(1, max);
   const people = await peopleRepository.getPeople(randomId);
-  return people;
+  return people.rows[0];
 }
 
 function getRandom(min: number, max: number) {
