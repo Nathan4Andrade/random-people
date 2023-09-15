@@ -1,11 +1,11 @@
-import { peopleRepository } from "repositories/people.repository";
+import { peopleRepository } from "../repositories/people.repository";
 import { People } from "protocols/people";
 
 async function getPeople(): Promise<People> {
-  const max = await peopleRepository.getQuantity();
+  const max = Number(await peopleRepository.getQuantity());
   const randomId = getRandom(1, max);
   const people = await peopleRepository.getPeople(randomId);
-  return people.rows;
+  return people;
 }
 
 function getRandom(min: number, max: number) {
